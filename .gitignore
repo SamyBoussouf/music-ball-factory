@@ -1,0 +1,22 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.uv/
+
+# Blender
+*.blend1
+*.blend2
+
+# Renders & heavy files
+output/renders/
+output/videos/
+input/audio_stems/
+
+# References (trop lourd pour git — sync Google Drive si besoin)
+references/marvinblend/videos/
+references/marvinblend/frames/
+
+# OS
+.DS_Store

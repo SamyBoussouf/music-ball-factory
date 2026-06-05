@@ -1,0 +1,151 @@
+{
+  "_source": "ref_001.mp4 — marvinblend, 37s, 720x1280, 30fps",
+  "_analyzed": "2026-06-06",
+
+  "format": {
+    "resolution": [1080, 1920],
+    "fps": 30,
+    "aspect": "9:16",
+    "audio_sr": 44100
+  },
+
+  "scene_structure": {
+    "concept": "One continuous descending track — camera follows the ball from top to bottom. Each song = new section with its own rail shape and instrument type. The transition between sections is visual: new rails appear below as old ones exit the top of frame.",
+    "sections_in_ref": ["Steel Pan", "Confort Chain", "Fallen Down", "Hide (Dark Fantasy)"],
+    "loop": "End of track connects back to start — seamless repeat"
+  },
+
+  "environment": {
+    "wall_color_srgb": [0.83, 0.76, 0.72],
+    "wall_color_hex": "#D4C2B8",
+    "wall_roughness": 0.90,
+    "wall_note": "NOT flat — warm amber glow pools from right side, gradient visible. Use area light + subtle gradient texture.",
+    "ceiling": {
+      "present": true,
+      "type": "wood_slats",
+      "plank_color_srgb": [0.25, 0.17, 0.10],
+      "plank_gap_ratio": 0.35,
+      "direction": "horizontal",
+      "position": "top of frame, partial"
+    },
+    "light_main": {
+      "type": "area",
+      "direction": "right",
+      "color_srgb": [1.0, 0.92, 0.80],
+      "temperature_kelvin": 3800,
+      "intensity": "medium-high",
+      "creates_soft_shadow": true
+    },
+    "light_accent": {
+      "type": "point_follow_ball",
+      "only_for_sections": ["dark_sections"],
+      "color_srgb": [1.0, 0.15, 0.40],
+      "note": "Visible in Hide (Dark Fantasy) — red/magenta glow cast on xylophone surface by ball"
+    }
+  },
+
+  "camera": {
+    "lens_mm": 85,
+    "sensor": "full_frame",
+    "distance_from_wall": 1.2,
+    "dutch_tilt_deg": 4,
+    "note": "NOT perpendicular — slight oblique angle, creates depth. Rotates ~4° on Z axis.",
+    "motion": "follows ball continuously, smooth damp, slight lag",
+    "depth_of_field": true,
+    "dof_focus": "ball",
+    "dof_fstop": 4.0,
+    "background_blur_visible": true
+  },
+
+  "ball": {
+    "radius_blender_units": 0.045,
+    "material": "glass_swirl_internal",
+    "base_color": "transparent_glass",
+    "internal_swirl_colors": {
+      "variant_1": [[0.0, 0.7, 0.9], [1.0, 1.0, 1.0]],
+      "variant_2": [[0.6, 0.9, 0.2], [1.0, 1.0, 0.8]],
+      "variant_3": [[0.85, 0.85, 0.95], [0.5, 0.3, 0.9]]
+    },
+    "ior": 1.52,
+    "shadow": "soft drop shadow on wall behind",
+    "count_rules": {
+      "default_bpm_under_140": 1,
+      "fast_bpm_140_180": 2,
+      "very_fast_bpm_over_180": 3,
+      "multi_ball_rule": "additional balls are SLIGHTLY behind on same track, offset by one note"
+    }
+  },
+
+  "rails": {
+    "tube_radius_blender": 0.006,
+    "end_ball_radius": 0.015,
+    "material": "chrome",
+    "color_srgb": [0.85, 0.87, 0.90],
+    "roughness": 0.04,
+    "metallic": 1.0,
+    "wall_pin_depth": 0.05,
+    "shapes_per_section": {
+      "steel_pan": "smooth arc / S-curve, concave cradle for the ball",
+      "confort_chain": "straight horizontal segments connected by small curves, chain-like pattern",
+      "fallen_down": "NO rails — instruments suspended by thin vertical wires from above",
+      "hide_dark_fantasy": "flat wide platform grid (like a xylophone), multiple parallel bars"
+    }
+  },
+
+  "instruments": {
+    "steel_pan_disc": {
+      "shape": "flat_circle",
+      "diameter_blender": 0.12,
+      "thickness": 0.012,
+      "material": "wood_bamboo",
+      "color_srgb": [0.72, 0.52, 0.18],
+      "roughness": 0.65,
+      "mount": "single_post_side"
+    },
+    "xylophone_bar": {
+      "shape": "rounded_rectangle",
+      "dimensions_blender": [0.14, 0.035, 0.010],
+      "material": "metal_silver",
+      "color_srgb": [0.80, 0.82, 0.88],
+      "roughness": 0.08,
+      "metallic": 0.95,
+      "mount": "two_posts_ends"
+    },
+    "chain_bar_small": {
+      "shape": "rounded_rectangle",
+      "dimensions_blender": [0.06, 0.018, 0.008],
+      "material": "metal_gold_or_silver",
+      "color_variants": [[0.9, 0.75, 0.2], [0.78, 0.80, 0.86]],
+      "roughness": 0.06,
+      "metallic": 1.0,
+      "mount": "single_wire_top"
+    },
+    "pitch_mapping": {
+      "rule": "MIDI pitch → instrument size. Higher pitch = smaller instrument. Laid out left-to-right or top-to-bottom by pitch order.",
+      "velocity_to_scale": "high velocity → slightly larger hit visual (squash/stretch on impact)"
+    }
+  },
+
+  "text_overlay": {
+    "style": "number_dot_songname",
+    "example": "1. Steel Pan",
+    "container": "semi_transparent_rounded_rect",
+    "container_color_rgba": [0.12, 0.10, 0.08, 0.70],
+    "font_weight": "bold",
+    "font_color": [1.0, 1.0, 1.0],
+    "font_size_relative": 0.055,
+    "position": "top_left",
+    "margin_top": 0.08,
+    "margin_left": 0.06,
+    "duration_sec": "entire section duration",
+    "implementation": "Blender compositor text node or FFmpeg drawtext"
+  },
+
+  "animation": {
+    "ball_speed": "constant except on impacts — slight deceleration on hit, acceleration away",
+    "impact_squash": 0.15,
+    "instrument_wobble_on_hit_frames": 6,
+    "rail_section_spacing": "~0.8 blender units between instrument centers",
+    "travel_direction": "diagonal top-right to bottom-left (camera perspective)"
+  }
+}

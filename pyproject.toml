@@ -1,0 +1,18 @@
+[project]
+name = "music-ball-factory"
+version = "0.1.0"
+description = "Automated music ball video pipeline — marvinblend style"
+requires-python = ">=3.11"
+dependencies = [
+    "librosa>=0.11",
+    "basic-pitch>=0.4",
+    "numpy>=1.26",
+    "scipy>=1.13",
+    "soundfile>=0.12",
+]
+
+[project.optional-dependencies]
+stems = ["demucs>=4.0"]  # only for guess-the-song format
+
+[tool.uv]
+dev-dependencies = ["ipython"]
